@@ -1,0 +1,44 @@
+{
+    "appId": "com.minh.mirror",
+    "productName": "Mirror",
+    "icon":"build/mirror.jpg",
+    "extraResources": [
+      {
+        "from": "./app-config.json", 
+        "to": "app-config.json" 
+      }
+    ],
+    "directories": {
+      "output": "release-builds"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": ["nsis"]
+    },
+    "linux":{
+      "target": [
+            {
+            "target": "deb",
+            "arch": ["armv7l", "arm64"]
+            },
+            "AppImage"
+        ],
+      "category": "Utility"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "uninstallDisplayName": "Uninstalling Mirror",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Mirror",
+      "artifactName": "Mirror.exe"
+    }
+  }

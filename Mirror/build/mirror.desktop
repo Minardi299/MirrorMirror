@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Mirror
+Exec=/opt/Mirror/mirror
+Icon=mirror
+Type=Application
+Categories=Utility;

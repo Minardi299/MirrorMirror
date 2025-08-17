@@ -55,7 +55,7 @@ export function TimeSection() {
       <div className="text-sm">
         {time.toLocaleDateString(USE_US_DATE ? "en-US" : "en-GB")}
       </div>
-      <div className="text-xs text-gray-500">{timezone}</div>
+      <div >{timezone}</div>
     </div>
   );
 }

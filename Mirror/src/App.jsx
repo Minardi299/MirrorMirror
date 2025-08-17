@@ -69,20 +69,20 @@ function App() {
              <h3>System Time</h3>
              <TimeSection />
            </div>
-           <div className="border border-black p-4">
+           <div >
              <h3>Section 2</h3>
            </div>
-           <div className="border border-black p-4">
+           <div >
               <h3>Device Location</h3>
              <LocationSection />
            </div>
-           <div className="border border-black p-4">
+           <div >
              <h3>Section 4</h3>
            </div>
-           <div className="border border-black p-4">
+           <div >
              <h3>Section 5</h3>
            </div>
-           <div className="border border-black p-4">
+           <div>
              <h3>Section 6</h3>
            </div>
          </div>
@@ -90,20 +90,20 @@ function App() {
 
              {!orientationData.isLandscape &&
          <div className="screen-container grid grid-cols-2 grid-rows-2 h-full">
-           <div className="border border-black p-4">
+           <div >
              <h3>System Time</h3>
              <TimeSection />
 
            </div>
-           <div className="border border-black p-4">
+           <div c>
              <h3>Device Location</h3>
              <LocationSection />
 
            </div>
-           <div className="border border-black p-4">
+           <div >
              <h3>Section 3</h3>
            </div>
-           <div className="border border-black p-4">
+           <div >
              <h3>Section 4</h3>
            </div>
          </div>

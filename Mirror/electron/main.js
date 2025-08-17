@@ -10,14 +10,14 @@ import os from 'os';
 import fs from 'fs';
 import fetch from 'node-fetch';
 
+//This is where the api key is being injected from the env file
 dotenv.config();
-app.commandLine.appendSwitch("google-api-key", process.env.GOOGLE_API_KEY); 
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 let mainWindow;
 
-function createWindow () {
+async function createWindow () {
   const preloadPath = path.join(__dirname, 'preload.js');
   mainWindow = new BrowserWindow({
     width: 1200,
@@ -39,13 +39,24 @@ function createWindow () {
   });
 
   if(isDev()){
+    await waitForVite("http://localhost:5173/");
     mainWindow.loadURL("http://localhost:5173/");
     mainWindow.webContents.openDevTools();
   } else {
     mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
   }
 }
-
+async function waitForVite(url, retries = 20, delay = 500) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      await fetch(url);
+      return true;
+    } catch (e) {
+      await new Promise(r => setTimeout(r, delay));
+    }
+  }
+  return false;
+}
 // Initialize app when ready
 app.whenReady().then(createWindow);
 

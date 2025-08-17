@@ -12,7 +12,6 @@ import fetch from 'node-fetch';
 
 dotenv.config();
 app.commandLine.appendSwitch("google-api-key", process.env.GOOGLE_API_KEY); 
-process.env.GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

@@ -39,6 +39,6 @@
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
       "shortcutName": "Mirror",
-      "artifactName": "Mirror.exe"
+      "artifactName": "Mirror_Setup.exe"
     }
   }

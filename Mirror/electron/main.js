@@ -8,7 +8,12 @@ import { isDev } from './util.js';
 import dotenv from 'dotenv';
 import os from 'os';
 import fs from 'fs';
+import fetch from 'node-fetch';
+
 dotenv.config();
+app.commandLine.appendSwitch("google-api-key", process.env.GOOGLE_API_KEY); 
+process.env.GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 let mainWindow;
@@ -24,6 +29,8 @@ function createWindow () {
       nodeIntegration: false,
       contextIsolation: true,
       enableRemoteModule: false,
+      // Enable geolocation permissions
+      permissions: ['geolocation'],
     }
   });
 
@@ -52,3 +59,56 @@ app.on('window-all-closed', () => {
 ipcMain.handle('get-hostname', async () => {
   return os.hostname();
 });
+
+// Handle orientation detection and screen division
+ipcMain.handle('get-orientation-data', async () => {
+  if (!mainWindow) {
+    return { error: 'Window not available' };
+  }
+  
+  const bounds = mainWindow.getBounds();
+  const width = bounds.width;
+  const height = bounds.height;
+  
+  // Determine orientation based on aspect ratio
+  const isLandscape = width > height;
+  
+  return {
+    isLandscape,
+    width,
+    height
+  };
+});
+
+// Handle system time API
+ipcMain.handle('get-system-time', async () => {
+  const now = new Date();
+  return {
+    time: now.toLocaleTimeString(),
+    date: now.toLocaleDateString(),
+    timestamp: now.getTime()
+  };
+});
+
+
+
+// Handle precise geolocation from renderer
+ipcMain.handle('get-precise-location', async () => {
+  try {
+    const res = await fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.GOOGLE_API_KEY}`, {
+      method: 'POST',
+      body: JSON.stringify({ considerIp: true }),
+      headers: { 'Content-Type': 'application/json' }
+    });
+    const data = await res.json();
+    return {
+      lat: data.location.lat,
+      lon: data.location.lng,
+      accuracy: data.accuracy,
+      method: 'google-geolocation-api'
+    };
+  } catch (err) {
+    return { error: err.message };
+  }
+});
+

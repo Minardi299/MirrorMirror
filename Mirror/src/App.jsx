@@ -5,9 +5,7 @@ import { TimeSection } from './Sections/time.jsx'
 import './App.css'
 import { 
   fetchOrientationData, 
-  fetchSystemData, 
-  setupWindowResizeListener, 
-  setupTimeInterval 
+  setupWindowResizeListener,  
 } from './utils.js'
 
 function App() {
@@ -72,12 +70,11 @@ function App() {
              <TimeSection />
            </div>
            <div className="border border-black p-4">
-             <h3>Device Location</h3>
-             
-             <LocationSection />
+             <h3>Section 2</h3>
            </div>
            <div className="border border-black p-4">
-             <h3>Section 3</h3>
+              <h3>Device Location</h3>
+             <LocationSection />
            </div>
            <div className="border border-black p-4">
              <h3>Section 4</h3>

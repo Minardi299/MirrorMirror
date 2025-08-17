@@ -1,7 +1,7 @@
 {
     "appId": "com.minh.mirror",
     "productName": "Mirror",
-    "icon":"build/mirror.jpg",
+    "icon":"build/mirror.png",
     "extraResources": [
       {
         "from": "./app-config.json", 

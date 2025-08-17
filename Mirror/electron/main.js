@@ -5,13 +5,13 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'node:path';
 import { fileURLToPath } from 'url';
 import { isDev } from './util.js';
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 import os from 'os';
 import fs from 'fs';
 import fetch from 'node-fetch';
 
 //This is where the api key is being injected from the env file
-dotenv.config();
+// dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,6 +23,8 @@ async function createWindow () {
     width: 1200,
     height: 800,
     show: false, // Don't show the window until it's ready
+    fullscreen: true,  // <-- start in fullscreen
+
     webPreferences: {
       preload: preloadPath,
       nodeIntegration: false,

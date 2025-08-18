@@ -16,6 +16,7 @@ import fetch from 'node-fetch';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 let mainWindow;
+let dev = isDev();
 
 async function createWindow () {
   const preloadPath = path.join(__dirname, 'preload.js');
@@ -23,7 +24,7 @@ async function createWindow () {
     width: 1200,
     height: 800,
     show: false, // Don't show the window until it's ready
-    fullscreen: true,  // <-- start in fullscreen
+    fullscreen: !dev,  // <-- start in fullscreen
 
     webPreferences: {
       preload: preloadPath,

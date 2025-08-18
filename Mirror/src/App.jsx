@@ -8,12 +8,16 @@ import {
   setupWindowResizeListener,  
 } from './utils.js'
 import { t } from './i18n.js';
+import { useLanguage } from "./hooks/useLanguage";
+
 
 
 function App() {
   const [orientationData, setOrientationData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [language, setLanguage] = useLanguage();
+
 
 
   useEffect(() => {
@@ -73,7 +77,12 @@ function App() {
            </div>
            <div >
              <h3>Section 2</h3>
-              <p className="hidden md:block">{t('hello', 'fr')}</p>
+              <p>{t('hello', language)}</p>
+              <p>Current language: {language}</p>
+      <button className='bg-foreground' onClick={() => setLanguage("en")}>English</button>
+      <button onClick={() => setLanguage("fr")}>French</button>
+            <button onClick={() => setLanguage("es")}>Spanish</button>
+
 
            </div>
            <div >

@@ -7,6 +7,8 @@ import {
   fetchOrientationData, 
   setupWindowResizeListener,  
 } from './utils.js'
+import { t } from './i18n.js';
+
 
 function App() {
   const [orientationData, setOrientationData] = useState(null)
@@ -71,6 +73,8 @@ function App() {
            </div>
            <div >
              <h3>Section 2</h3>
+              <p className="hidden md:block">{t('hello', 'fr')}</p>
+
            </div>
            <div >
               <h3>Device Location</h3>
